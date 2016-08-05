@@ -1,0 +1,84 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Dashboard: Widget Maker</title>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=11" />
+	<meta name="format-detection" content="telephone=no" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<meta name="robots" content="all,follow" />
+	<link rel="stylesheet" href="https://dashboard.totaljs.com/css/default.css" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" />
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.1.1/d3.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.2.1/Chart.min.js"></script>
+	<script src="https://dashboard.totaljs.com/developer.js"></script>
+	<style type="text/css">
+		body { padding: 20px 0 30px; font-family: Arial; font-size: 14px; color: gray; font-smoothing: antialiased; overflow-y: scroll; overflow-x: hidden; overflow-scrolling: touch; }
+		#widget { background-color: #F8F8F8; overflow: hidden; margin-top: 30px; position: absolute; left: 330px; }
+		.widget-container { display: table; }
+		.widget-body { display: table-cell; vertical-align: middle; text-align: center; overflow: hidden; }
+		.preview { position: absolute; margin-top: 30px; background-color: white; padding: 20px; border-radius: 4px; font-size: 11px; border: 1px solid #E0E0E0; left: 40px; }
+		.preview > div:first-child { margin-bottom: 5px; }
+		.preview img { border: 1px solid #E0E0E0; }
+		.preview-title { font-size: 14px; color: black; margin-top: 10px; }
+		.preview-author { font-size: 11px; color: gray; }
+		header { border-bottom: 1px solid #E0E0E0; padding: 0 40px 20px; }
+		h1 { font-family: Arial; font-size: 20px; margin-top: 0; }
+		h1 .fa { margin-right: 10px; width: 20px; }
+	</style>
+</head>
+<body>
+
+	<header>
+		<h1><i class="fa fa-plug"></i>Widget Maker</h1>
+		<select id="device" style="width:150px">
+			<option value="xs">Device: XS</option>
+			<option value="sm">Device: SM</option>
+			<option value="md">Device: MD</option>
+			<option value="lg" selected="selected">Device: LG</option>
+		</select>
+		<select id="grid" style="width:150px">
+			<optgroup label="Square">
+				<option value="6x6">Grid: 6x6</option>
+				<option value="5x5">Grid: 5x5</option>
+				<option value="4x4">Grid: 4x4</option>
+				<option value="3x3" selected="selected">Grid: 3x3</option>
+				<option value="2x2">Grid: 2x2</option>
+				<option value="1x1">Grid: 1x1</option>
+			</optgroup>
+			<optgroup label="Rectangle - vertical">
+				<option value="1x2">Grid: 1x2</option>
+				<option value="1x3">Grid: 1x3</option>
+				<option value="1x4">Grid: 1x4</option>
+				<option value="1x5">Grid: 1x5</option>
+				<option value="1x6">Grid: 1x6</option>
+			</optgroup>
+			<optgroup label="Rectangle - horizontal">
+				<option value="2x1">Grid: 2x1</option>
+				<option value="3x1">Grid: 3x1</option>
+				<option value="4x1">Grid: 4x1</option>
+				<option value="5x1">Grid: 5x1</option>
+				<option value="6x1">Grid: 6x1</option>
+			</optgroup>
+		</select>
+	</header>
+
+	<div class="preview">
+		<div>Widget preview: <b>200x150</b></div>
+		<div><img src="https://dashboard.totaljs.com/img/empty.png" alt="Preview" width="200" height="150" class="img-rounded" /></div>
+		<div class="preview-title"></div>
+		<div class="preview-author"></div>
+	</div>
+
+	<div id="widget">
+		<div class="widget-container">
+			<div class="widget-body"></div>
+		</div>
+	</div>
+
+	<script src="widget.js"></script>
+
+</body>
+</html>
