@@ -2,11 +2,18 @@ WIDGET('MyWidgetName', function() {
 
 	var self = this;
 	var padding = 10;
-	var gauges = {};
+	var is = false;
+	var memory;
+	var cpu;
 
 	function gauge(name, element, width, height, percentage) {
 
 		var el = d3.select(element.get(0));
+
+		if (is)
+			el.selectAll('svg').remove();
+
+		is = true;
 
 		var svgProgress = el.append('svg');
 		svgProgress.attr('width', width);
@@ -49,22 +56,13 @@ WIDGET('MyWidgetName', function() {
 	}
 
 	self.make = function(size) {
-
-
 		self.html('<div style="width:50%;float:left;position:relative;background:blue" data-index="0"></div><div style="float:right;width:50%;position:relative;background:red" data-index="1"></div>')
-
-		var cpu = gauge('cpu', self.element.find('div[data-index="0"]'), size.width / 2, 120, 20);
-		var memory = gauge('memory', self.element.find('div[data-index="1"]'), size.width / 2, 120, 20);
-
-		setTimeout(function() {
-			cpu(80);
-			memory(100);
-		}, 1000);
+		self.resize(size);
 	};
 
 	self.resize = function(size) {
-		svg.attr('width', size.width);
-		svg.attr('height', size.height);
+		cpu = gauge('cpu', self.element.find('div[data-index="0"]'), size.width / 2, size.height / 4, 20);
+		// memory = gauge('memory', self.element.find('div[data-index="1"]'), size.width / 2, size.height / 4, 20);
 	};
 
 }, function(config, inject) {
